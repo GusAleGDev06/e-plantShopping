@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../store/cartSlice';
+import { addItem } from '../store/CartSlice';
 
 function PlantList({ plants }) {
   const dispatch = useDispatch();

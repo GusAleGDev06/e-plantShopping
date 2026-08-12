@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { updateQuantity, removeItem } from '../store/cartSlice';
+import { updateQuantity, removeItem } from '../store/CartSlice';
 import { FaTrash } from 'react-icons/fa';
 
 function CartItem({ item }) {
