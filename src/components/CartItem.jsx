@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { updateQuantity, removeItem } from '../store/CartSlice';
+import { updateQuantity } from '../store/CartSlice';
 import { FaTrash } from 'react-icons/fa';
 
-function CartItem({ item }) {
+function CartItem({ item, cartTotal }) {
   const dispatch = useDispatch();
 
   const handleIncrease = () => {
@@ -11,11 +11,17 @@ function CartItem({ item }) {
   };
 
   const handleDecrease = () => {
-    dispatch(updateQuantity({ id: item.id, newQuantity: item.quantity - 1 }));
+    if (item.quantity === 1) {
+      // Si la cantidad es 1, al decrementar se elimina (newQuantity = 0)
+      dispatch(updateQuantity({ id: item.id, newQuantity: 0 }));
+    } else {
+      dispatch(updateQuantity({ id: item.id, newQuantity: item.quantity - 1 }));
+    }
   };
 
   const handleDelete = () => {
-    dispatch(removeItem(item.id));
+    // Eliminar el ítem por completo
+    dispatch(updateQuantity({ id: item.id, newQuantity: 0 }));
   };
 
   return (
